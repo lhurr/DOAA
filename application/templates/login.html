@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<section class="login_box_area section-margin">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6">
+                <div class="login_box_img">
+                    <div class="hover">
+                        <h4>New to Super Life?</h4>
+                        <a class="button button-account" href="/signup">Click here to sign up!</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-6">
+                <div class="login_form_inner">
+                    {{ render_flashes() }}
+                    <h3>Log in to enter</h3>
+                    
+                    
+                    <form class="row login_form" action="{{ url_for('routes.login') }}" , method="post">
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="col-md-12 form-group">
+                            {{ form.email.label(class_ = 'form-label') }}
+                            {{ form.email(class_='form-control' ) }}
+                            {% for error in form.email.errors %}
+                            <br>
+                            <span class="text-danger">{{ error }}</span>
+                            {% endfor %}
+
+                        </div>
+                        <div class="col-md-12 form-group">
+                            {{ form.password.label(class_ = 'form-label') }}
+                                {{ form.password(class_='form-control' ) }}
+                        </div>
+
+                        {% for error in form.password.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+
+
+                        
+
+                        <div class="col-md-12">
+                            {{ form.submit(class='button button-login w-100') }}
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

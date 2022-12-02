@@ -1,0 +1,202 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<section class="login_box_area section-margin">
+  <script>
+    function outputUpdate(surgery) {
+        document.querySelector('#selected').value = surgery;
+    }
+    </script>
+
+  <div class="container">
+    <div class="col-md-12">
+      {{ render_flashes() }}
+      <div>
+        <h3 class="text-left">
+          Make a Prediction!
+        </h3>
+        <p class="lead">
+          Please fill up your details below, and click submit so that our AI model can help indicate the insurance price.
+          Please note only values used to train the model are valid, for the purpose of maximizing the reliability of this app
+        </p>
+        <hr>
+      </div>
+
+      <section>
+        <form action="/predict" method="POST">
+          {{ form.hidden_tag() }}
+          <div class="row">
+            <!-- General information of users -->
+            <fieldset class="form-group col-md-3 col-sm-12 ">
+              <h5>General Information</h5>
+              <hr>
+
+
+              <div class="form-group">
+
+
+                <div class="form-group">
+
+                  {{ form.age.label(class_ = 'form-label text-primary') }}
+                  {{ form.age(class_='form-control' ) }}
+                  {% for error in form.age.errors %}
+                  <span class="text-danger">{{ error }}</span>
+                  {% endfor %}
+                </div>
+
+
+
+                <div class="form-group">
+                  {{ form.weight.label(class_ = 'form-label text-primary') }}
+                  {{ form.weight(class_='form-control' ) }}
+                  {% for error in form.weight.errors %}
+                  <span class="text-danger">{{ error }}</span>
+                  {% endfor %}
+                </div>
+
+                <div class="form-group">
+                  {{ form.height.label(class_ = 'form-label text-primary') }}
+                  {{ form.height(class_='form-control' ) }}
+                  {% for error in form.height.errors %}
+                  <span class="text-danger">{{ error }}</span>
+                  {% endfor %}
+                </div>
+
+
+
+            </fieldset>
+
+
+            <fieldset class="form-group col-md-6 col-sm-12">
+
+              <h5>Health information</h5>
+              <hr>
+
+
+              <div class="form-group">
+                <div class='mr-4'>
+                  {{ form.diabetes.label(class_ = 'form-label text-primary float-left') }} &nbsp; &nbsp;
+                  {% for diabetes in form.diabetes %}
+                  {{ diabetes.label(class_ = 'form-check-label me-4') }}
+                  {{ diabetes(class_='form-check-input' ) }}
+                  {% endfor %}
+                </div>
+                {% for error in form.diabetes.errors %}
+                <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+              </div>
+
+
+              <div class="form-group">
+                <div class='mr-4'>
+                  {{ form.bloodpressure.label(class_ = 'form-label text-primary float-left') }} &nbsp; &nbsp;
+                  {% for bloodpressure in form.bloodpressure %}
+                  {{ bloodpressure.label(class_ = 'form-check-label me-4') }}
+                  {{ bloodpressure(class_='form-check-input' ) }}
+                  {% endfor %}
+                </div>
+                {% for error in form.bloodpressure.errors %}
+                <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+              </div>
+
+              <div class="form-group">
+                <div class='mr-4'>
+                  {{ form.anytransplant.label(class_ = 'form-label text-primary float-left') }} &nbsp; &nbsp;
+                  {% for anytransplant in form.anytransplant %}
+                  {{ anytransplant.label(class_ = 'form-check-label me-4') }}
+                  {{ anytransplant(class_='form-check-input' ) }}
+                  {% endfor %}
+                </div>
+                {% for error in form.anytransplant.errors %}
+                <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+              </div>
+
+              <div class="form-group">
+                <div class='mr-4'>
+                  {{ form.chronic.label(class_ = 'form-label text-primary float-left') }} &nbsp; &nbsp;
+                  {% for chronic in form.chronic %}
+                  {{ chronic.label(class_ = 'form-check-label me-4') }}
+                  {{ chronic(class_='form-check-input' ) }}
+                  {% endfor %}
+                </div>
+                {% for error in form.chronic.errors %}
+                <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+              </div>
+
+
+              <div class="form-group">
+                <div class='mr-4'>
+                  {{ form.allergies.label(class_ = 'form-label text-primary float-left') }} &nbsp; &nbsp;
+                  {% for allergies in form.allergies %}
+                  {{ allergies.label(class_ = 'form-check-label me-4') }}
+                  {{ allergies(class_='form-check-input' ) }}
+                  {% endfor %}
+                </div>
+                {% for error in form.allergies.errors %}
+                <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+              </div>
+
+              <div class="form-group">
+                <div class='mr-4'>
+                  {{ form.cancer.label(class_ = 'form-label text-primary float-left') }} &nbsp; &nbsp;
+                  {% for cancer in form.cancer %}
+                  {{ cancer.label(class_ = 'form-check-label me-4') }}
+                  {{ cancer(class_='form-check-input' ) }}
+                  {% endfor %}
+                </div>
+                {% for error in form.cancer.errors %}
+                <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+              </div>
+
+              <div class="form-group">
+                <div class='mr-4'>
+                  {{ form.surgery.label(class_ = 'form-label text-primary float-left') }} &nbsp; &nbsp;
+                  {{ form.surgery(oninput="outputUpdate(value)" ) }}
+                  <output for="surgery" id="selected">{{ form.surgery.data }}</output>
+                </div>
+                {% for error in form.surgery.errors %}
+                <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+              </div>
+
+              <div class="float-right">
+                {{ form.submit(class='button button-login w-100') }}
+              </div>
+
+            </fieldset>
+
+            <div class="col-sm-3 float-right my-auto">
+              <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title text-success">Continuously making an impact on your financial decisions</h6>
+                  <img src="{{ url_for('static', filename='images/family-2073604_1920.png')}}" class="img-fluid">
+
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+
+        </form>
+
+
+
+
+      </section>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+{% endblock %}

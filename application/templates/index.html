@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="row py-5 my-4 container-fluid">
+    <div class="px-4 py-5 my-5 col-lg-7 col-sm-12">
+        {{ render_flashes() }}
+        <h1 class="display-5 fw-bold text-left">
+            Welcome!
+        </h1>
+        <p class="lead mb-4">
+            {{ title }} is an app that uses machine learning to help you make better financial decisions when you purchase medical insurance premium!
+        </p>
+        
+    </div>
+    <figure class="px-4 py-5 my-5 col-lg-5 d-lg-block">
+        <img src="{{ url_for('static', filename='images/insurance.png')}}" class="img-fluid">
+    </figure>
+</div>
+<div class="row">
+    <figure class="px-4 py-5 my-5 col-lg-5 d-sm-none d-lg-block">
+        <img src="{{ url_for('static', filename='images/4412.jpg')}}" class="img-fluid" height="10">
+    </figure>
+
+    <div class="mt-5 my-5 col-lg-7">
+        <h2 class="display-6 fw-bold text-left">
+            {{ title }} has got you covered!
+        </h2>
+        <p class="lead mb-4">
+            Our backend AI program has been trained on medical insurance data, and will indicate to you what is the most reasonable price for a year's worth of health insurance!
+            <br><br>
+            To make the best out of this application, only intrapolation is allowed, that means only values within the range used to train the model are valid.
+        </p>
+    </div>
+
+    <style>html,body
+        {            overflow-x: hidden; 
+        }</style>
+</div>
+{% endblock %}

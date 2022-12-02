@@ -1,0 +1,48 @@
+<header class="fixed-top" style="background-color: white;">
+   <div class="header_area">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <!-- <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a> -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <div class="nav-item">
+              <!-- <link href=> -->
+              <img src="{{ url_for('static', filename='images/life-insurance.png')}}", width="30" height="28">
+
+            
+            <h5 style="float: left; color: black;">{{ title }} &nbsp;</h5>
+          </div>
+
+            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+              <li class="nav-item {% if page == 'home' %} active {% endif %} "><a class="nav-link" href="/index">Home</a></li>
+              <li class="nav-item {% if page == 'login' %} active {% endif %} "><a class="nav-link" href="/login">Login</a></li>
+              <li class="nav-item {% if page == 'signup' %} active {% endif %} "><a class="nav-link" href="/signup">Sign Up</a></li>
+
+              {% if current_user.is_authenticated %}
+
+              <li class="nav-item submenu dropdown {% if page == 'predict' or page=='history' %} active {% endif %}">
+
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Prediction</a>
+                <ul class="dropdown-menu">
+                  
+                  <li class="nav-item {% if page == 'predict' %} active {% endif %}"><a class="nav-link" href="/predict">Make a prediction!</a></li>
+                  
+                  <li class="nav-item {% if page == 'history' %} active {% endif %}"><a class="nav-link" href="/history">View History</a></li>
+
+                </ul>
+              </li>
+              
+
+              <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>            </ul>
+              {% endif %}
+          </div>
+        </div>
+      </nav>
+    </div>
+</header>
