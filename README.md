@@ -1,8 +1,8 @@
 <h1 align="center">Super Life</h1>
 
-<p align="center"><b>Insuring Your Health, Securing Your Future</b></p>
+<p align="center"><b>Insuring Your Health</b></p>
 
-<p align="center"><img alt="cover" src="assets/logo" width="80%"/></p>
+<p align="center"><img alt="cover" src="assets/logo.png" width="80%"/></p>
 
 ## Overview
 
@@ -16,6 +16,8 @@
 
 ## Built with:
 
-- Flask (Web framework for Python, using Jinja2 to generate HTML dynamically)
-
+- Flask Suite (Web framework for Python, using Jinja2 templating)
+- SQLAlchemy (a Object-Relational Mapping library)
+- Pytest (Unit testing)
+- sklearn (ML implementation)
 
