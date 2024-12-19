@@ -2,7 +2,7 @@
 
 <p align="center"><b>Insuring Your Health</b></p>
 
-<p align="center"><img alt="cover" src="assets/logo.png" width="80%"/></p>
+<p align="center"><img alt="cover" src="assets/logo.png" width="60%"/></p>
 
 ## Overview
 
